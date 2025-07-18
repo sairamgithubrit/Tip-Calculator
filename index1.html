@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tip Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 30px;
+    }
+    .container {
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    input, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Tip Calculator</h2>
+  <input type="number" id="bill" placeholder="Enter bill amount">
+  <input type="number" id="tip" placeholder="Enter tip percentage">
+  <button onclick="calculateTip()">Calculate Tip</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  function calculateTip() {
+    const billAmount = parseFloat(document.getElementById("bill").value);
+    const tipPercent = parseFloat(document.getElementById("tip").value);
+
+    if (isNaN(billAmount) || isNaN(tipPercent) || billAmount <= 0 || tipPercent < 0) {
+      document.getElementById("result").innerText = "Please enter valid inputs.";
+      return;
+    }
+
+    const tipAmount = (billAmount * tipPercent) / 100;
+    const totalAmount = billAmount + tipAmount;
+
+    document.getElementById("result").innerHTML = `
+      Tip: ₹${tipAmount.toFixed(2)}<br>
+      Total: ₹${totalAmount.toFixed(2)}
+    `;
+  }
+</script>
+
+</body>
+</html>
